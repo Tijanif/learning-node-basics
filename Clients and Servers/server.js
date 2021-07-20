@@ -1,7 +1,6 @@
 // Node module
 const http = require('http');
 const fs = require('fs');
-const { receiveMessageOnPort } = require('worker_threads');
 
 // Creating the server
 const server = http.createServer((req, res) => {
