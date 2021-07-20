@@ -7,12 +7,17 @@ const readStream = fs.createReadStream('./docs/blog3.txt', {
 });
 const WriteStream = fs.createWriteStream('./docs/blog4.txt');
 // The on is like an eventlistener but this time we are listening on data. we will get buffers in chunck.
-readStream.on('data', (chunk) => {
-  console.log('-------- New Chunk--------');
-  console.log(chunk);
+// readStream.on('data', (chunk) => {
+//   console.log('-------- New Chunk--------');
+//   console.log(chunk);
 
-  // writing to a new file with the data from another file
+//   // writing to a new file with the data from another file
+//   WriteStream.write('\nNew Chunk\n');
+//   WriteStream.write(chunk);
+// });
 
-  WriteStream.write('\nNew Chunk\n');
-  WriteStream.write(chunk);
-});
+//  Piping takes the read stream and move it to the write stream
+
+readStream.pipe(WriteStream);
+
+//
