@@ -1,6 +1,7 @@
 // Node module
 const http = require('http');
 const fs = require('fs');
+const { receiveMessageOnPort } = require('worker_threads');
 
 // Creating the server
 const server = http.createServer((req, res) => {
@@ -13,8 +14,20 @@ const server = http.createServer((req, res) => {
   // res.write('<p>Hello, Diana</p>');
   // res.write('<p>Hello, Tijani</p>');
 
+  let path = './views/';
+  switch (req.url) {
+    case '/':
+      path += 'index.html';
+      break;
+    case '/about':
+      path += 'about.html';
+      break;
+    default:
+      path += '404.html';
+      break;
+  }
   // Sending HTML files
-  fs.readFile('./views/index.html', (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end();
