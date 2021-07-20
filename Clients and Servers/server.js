@@ -3,7 +3,7 @@ const http = require('http');
 
 // Creating the server
 const server = http.createServer((req, res) => {
-  console.log('request made');
+  console.log(req.url, req.method);
 });
 
 // Listening for request
